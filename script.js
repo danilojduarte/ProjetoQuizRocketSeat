@@ -1,125 +1,131 @@
 const perguntas = [
     {
-        pergunta: "Qual palavra-chave é usada para declarar uma variável em JavaScript?",
-        respostas: [
-            "let",
-            "var",
-            "const",
-        ],
-        correta: 0 // Resposta correta é "let"
+      pergunta: "Qual é a finalidade do comando 'console.log()' em JavaScript?",
+      respostas: [
+        "Exibir uma mensagem de erro",
+        "Imprimir dados no console",
+        "Criar uma variável"
+      ],
+      correta: 1
     },
     {
-        pergunta: "Qual função é usada para imprimir algo no console do navegador?",
-        respostas: [
-            "print()",
-            "log()",
-            "console.log()",
-        ],
-        correta: 2 // Resposta correta é "console.log()"
+      pergunta: "Qual é a função do operador '===' em comparações em JavaScript?",
+      respostas: [
+        "Comparação de valores sem considerar o tipo",
+        "Atribuição de valores",
+        "Comparação estrita de valores e tipos"
+      ],
+      correta: 2
     },
     {
-        pergunta: "Como você escreve um comentário de uma única linha em JavaScript?",
-        respostas: [
-            "// Este é um comentário",
-            "/* Este é um comentário */",
-            "' Este é um comentário",
-        ],
-        correta: 0 // Resposta correta é "// Este é um comentário"
+      pergunta: "Como se declara uma variável em JavaScript?",
+      respostas: [
+        "let myVar;",
+        "const myVar = 10;",
+        "ambas as opções acima estão corretas"
+      ],
+      correta: 2
     },
     {
-        pergunta: "Qual é a forma correta de comparar se duas variáveis são iguais em valor e tipo?",
-        respostas: [
-            "==",
-            "===",
-            "!=",
-        ],
-        correta: 1 // Resposta correta é "==="
+      pergunta: "O que é uma função em JavaScript?",
+      respostas: [
+        "Um tipo de dado",
+        "Um bloco de código reutilizável",
+        "Uma variável global"
+      ],
+      correta: 1
     },
     {
-        pergunta: "Qual método é usado para remover o último elemento de um array em JavaScript?",
-        respostas: [
-            "pop()",
-            "shift()",
-            "splice()",
-        ],
-        correta: 0 // Resposta correta é "pop()"
+      pergunta: "Qual é a diferença entre 'let' e 'const' na declaração de variáveis?",
+      respostas: [
+        "Nenhuma, são sinônimos",
+        "let é usado para valores constantes, const para variáveis",
+        "let permite reatribuição, const cria variáveis imutáveis"
+      ],
+      correta: 2
     },
     {
-        pergunta: "Qual dos seguintes não é um tipo de dado em JavaScript?",
-        respostas: [
-            "string",
-            "number",
-            "integer",
-        ],
-        correta: 2 // Resposta correta é "integer"
+      pergunta: "O que é o DOM em JavaScript?",
+      respostas: [
+        "Um método de criptografia",
+        "Um modelo de objeto para manipular documentos HTML",
+        "Uma linguagem de programação"
+      ],
+      correta: 1
     },
     {
-        pergunta: "Qual operador é usado para atribuição de valor em JavaScript?",
-        respostas: [
-            "=",
-            "==",
-            ":=",
-        ],
-        correta: 0 // Resposta correta é "="
+      pergunta: "Como se realiza uma iteração sobre os elementos de um array em JavaScript?",
+      respostas: [
+        "Usando a estrutura 'if-else'",
+        "Com a declaração 'switch'",
+        "Utilizando loops como 'for' ou 'forEach'"
+      ],
+      correta: 2
     },
     {
-        pergunta: "O que o método 'charAt()' retorna se a posição especificada estiver fora do alcance de uma string?",
-        respostas: [
-            "null",
-            "undefined",
-            "Um erro",
-        ],
-        correta: 1 // Resposta correta é "undefined"
+      pergunta: "O que é o JSON em JavaScript?",
+      respostas: [
+        "Um método de formatação de texto",
+        "Uma linguagem de estilização",
+        "Um formato de dados leve e intercambiável"
+      ],
+      correta: 2
     },
     {
-        pergunta: "Qual dos seguintes métodos é usado para adicionar novos elementos ao final de um array?",
-        respostas: [
-            "push()",
-            "append()",
-            "addToEnd()",
-        ],
-        correta: 0 // Resposta correta é "push()"
+      pergunta: "Qual é a diferença entre 'null' e 'undefined' em JavaScript?",
+      respostas: [
+        "São iguais, usados de forma intercambiável",
+        "'null' representa a ausência de valor, 'undefined' é atribuído explicitamente",
+        "Ambos representam valores vazios"
+      ],
+      correta: 1
     },
     {
-        pergunta: "Qual é a forma correta de declarar uma função em JavaScript?",
-        respostas: [
-            "função myFunction() {}",
-            "function = myFunction() {}",
-            "function myFunction() {}",
-        ],
-        correta: 2 // Resposta correta é "function myFunction() {}"
+      pergunta: "Como se adiciona um evento a um elemento HTML usando JavaScript?",
+      respostas: [
+        "Apenas com CSS",
+        "Usando o atributo 'event'",
+        "Através do método 'addEventListener'"
+      ],
+      correta: 2
     },
-];
-
-const quiz = document.querySelector('#quiz')
-const template = document.querySelector('template')
-
-
-// Loop ou laço de repetição
-for (const item of perguntas) {
+  ];
+  
+  const quiz = document.querySelector('#quiz')
+  const template = document.querySelector('template')
+  
+  const corretas = new Set()
+  const totalDePerguntas = perguntas.length
+  const mostrarTotal = document.querySelector('#acertos span')
+  mostrarTotal.textContent = corretas.size + ' de ' + totalDePerguntas
+  
+  // loop ou laço de repetição
+  for (const item of perguntas) {
     const quizItem = template.content.cloneNode(true)
     quizItem.querySelector('h3').textContent = item.pergunta
-
-    for(let resposta of item.respostas) {
-        const dt = quizItem.querySelector('dl dt').cloneNode(true)
-        dt.querySelector('span').textContent = resposta
-        dt.querySelector('input').setAttribute('name', 'pergunta-' + perguntas.indexOf(item))
-        dt.querySelector('input').value = item.respostas.indexOf(resposta)
-
-        dt.querySelector('input').onchange = () => {
-            
+  
+    for (let resposta of item.respostas) {
+      const dt = quizItem.querySelector('dl dt').cloneNode(true)
+      dt.querySelector('span').textContent = resposta
+      dt.querySelector('input').setAttribute('name', 'pergunta-' + perguntas.indexOf(item))
+      dt.querySelector('input').value = item.respostas.indexOf(resposta)
+      dt.querySelector('input').onchange = (event) => {
+        const estaCorreta = event.target.value == item.correta
+  
+        corretas.delete(item)
+        if (estaCorreta) {
+          corretas.add(item)
         }
-
-
-
-        quizItem.querySelector('dl').appendChild(dt)
-
-
-
+  
+        mostrarTotal.textContent = corretas.size + ' de ' + totalDePerguntas
+      }
+      quizItem.querySelector('dl').appendChild(dt)
     }
-
+  
+  
     quizItem.querySelector('dl dt').remove()
-
-
+  
+  
+    // coloca a pergunta na tela
     quiz.appendChild(quizItem)
-}
+  }
