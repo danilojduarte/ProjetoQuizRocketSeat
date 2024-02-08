@@ -106,10 +106,16 @@ for (const item of perguntas) {
         dt.querySelector('input').setAttribute('name', 'pergunta-' + perguntas.indexOf(item))
         dt.querySelector('input').value = item.respostas.indexOf(resposta)
 
+        dt.querySelector('input').onchange = () => {
+            
+        }
+
+
+
         quizItem.querySelector('dl').appendChild(dt)
 
 
-        
+
     }
 
     quizItem.querySelector('dl dt').remove()
